@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet_rewarded"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="60dp"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+    <RelativeLayout
+        android:id="@+id/lyt_animation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/drag_handle_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_small">
+
+            <View
+                android:layout_width="32dp"
+                android:layout_height="4dp"
+                android:layout_margin="@dimen/spacing_large"
+                android:background="@drawable/bg_shimmer" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyt_rewarded"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/drag_handle_view"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/spacing_large">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/spacing_large"
+                android:text="@string/msg_watch_ad"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                android:textSize="@dimen/text_size_medium" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_watch_ad"
+                style="@style/MaterialButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="54dp"
+                android:text="@string/btn_watch_ad"
+                android:textColor="@color/color_white" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_later"
+                style="@style/MaterialButtonStyleBorder"
+                android:layout_width="wrap_content"
+                android:layout_height="54dp"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="@string/btn_later"
+                android:textColor="@color/color_light_primary" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

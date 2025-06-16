@@ -1,0 +1,8 @@
+assembleRelease (apk-release)
+bundleRelease (aab-release)
+
+assembleDebug (apk-release)
+bundleDebug (aab-release)
+
+testReleaseUnitTest
+testDebugUnitTest

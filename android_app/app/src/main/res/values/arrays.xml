@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="dialog_wallpaper_view_type">
+        <item>@string/option_menu_wallpaper_grid_2</item>
+        <item>@string/option_menu_wallpaper_grid_3</item>
+    </string-array>
+
+    <string-array name="dialog_category_view_type">
+        <item>@string/option_menu_category_list</item>
+        <item>@string/option_menu_category_grid_2</item>
+    </string-array>
+
+</resources>

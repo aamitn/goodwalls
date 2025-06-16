@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--AdMob or Google Ad Manager App ID-->
+    <string name="admob_app_id">ca-app-pub-7175416236841292~7666126583</string>
+
+    <!--AppLovin SDK Key-->
+    <string name="applovin_sdk_key">x5ImfykxaMWsntpF6fuNGlFBtC9zBJuGchnmqy4iDgM8EkMRXXXXXXXXXX</string>
+
+    <!--========================================MESSAGE================================================-->
+    <!--Ads Unit ID-->
+    <!--Only used if ENABLE_OFFLINE_ADS_MODE in the Config.java is enabled with true value-->
+    <!--===============================================================================================-->
+
+    <!--Set ads_status 1 to enable ads or 0 to disable ads-->
+    <string name="ad_status">1</string>
+
+    <!--Selected Ads-->
+    <!--Supported main ads value: admob, google_ad_manager, fan, startapp, unity, applovin_max, applovin_discovery, ironsource or wortise-->
+    <string name="main_ads">admob</string>
+
+    <!--Supported backup ads value: admob, google_ad_manager, fan, startapp, unity, applovin_max, applovin_discovery, ironsource, wortise or none-->
+    <!--The values inside main_ads and backup_ads cannot be the same, they must be different-->
+    <string name="backup_ads">fan</string>
+
+    <!--AdMob-->
+    <string name="admob_publisher_id">pub-3940256099942544</string>
+    <string name="admob_banner_unit_id">ca-app-pub-3940256099942544/9214589741</string>
+    <string name="admob_interstitial_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="admob_rewarded_unit_id">ca-app-pub-3940256099942544/5224354917</string>
+    <string name="admob_native_unit_id">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="admob_app_open_unit_id">ca-app-pub-3940256099942544/9257395921</string>
+
+    <!--Google Ad Manager-->
+    <string name="ad_manager_banner_unit_id">/6499/example/banner</string>
+    <string name="ad_manager_interstitial_unit_id">/6499/example/interstitial</string>
+    <string name="ad_manager_rewarded_unit_id">/6499/example/rewarded</string>
+    <string name="ad_manager_native_unit_id">/6499/example/native</string>
+    <string name="ad_manager_app_open_unit_id">/6499/example/app-open</string>
+
+    <!--Meta Audience Network (Previously Facebook)-->
+    <string name="fan_banner_unit_id">YOUR_PLACEMENT_ID</string>
+    <string name="fan_interstitial_unit_id">YOUR_PLACEMENT_ID</string>
+    <string name="fan_rewarded_unit_id">YOUR_PLACEMENT_ID</string>
+    <string name="fan_native_unit_id">YOUR_PLACEMENT_ID</string>
+
+    <!--Start.io (Previously StartApp)-->
+    <string name="startapp_app_id">0</string>
+
+    <!--Unity Ads-->
+    <string name="unity_game_id">4089993</string>
+    <string name="unity_banner_placement_id">banner</string>
+    <string name="unity_interstitial_placement_id">video</string>
+    <string name="unity_rewarded_placement_id">rewardedVideo</string>
+
+    <!--AppLovin Discovery-->
+    <string name="applovin_banner_zone_id">0</string>
+    <string name="applovin_banner_mrec_zone_id">0</string>
+    <string name="applovin_interstitial_zone_id">0</string>
+    <string name="applovin_rewarded_zone_id">0</string>
+
+    <!--AppLovin MAX-->
+    <string name="applovin_banner_unit_id">0</string>
+    <string name="applovin_interstitial_unit_id">0</string>
+    <string name="applovin_rewarded_unit_id">0</string>
+    <string name="applovin_native_manual_unit_id">0</string>
+    <string name="applovin_open_ad_unit_id">0</string>
+
+    <!--IronSouce-->
+    <string name="ironsource_app_key">85460dcd</string>
+    <string name="ironsource_banner_placement_name">DefaultBanner</string>
+    <string name="ironsource_interstitial_placement_name">DefaultInterstitial</string>
+    <string name="ironsource_rewarded_placement_name">DefaultRewardedVideo</string>
+
+    <!--Wortise-->
+    <string name="wortise_app_id">test-app-id</string>
+    <string name="wortise_banner_unit_id">test-banner</string>
+    <string name="wortise_interstitial_unit_id">test-interstitial</string>
+    <string name="wortise_rewarded_unit_id">test-rewarded</string>
+    <string name="wortise_native_unit_id">test-native</string>
+    <string name="wortise_app_open_unit_id">test-app-open</string>
+
+    <!--Global Configuration-->
+    <integer name="interstitial_ad_interval">3</integer>
+    <integer name="native_ad_index_2_columns">4</integer>
+    <integer name="native_ad_index_3_columns">6</integer>
+
+</resources>
