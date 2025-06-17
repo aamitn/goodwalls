@@ -28,6 +28,8 @@ env:
 
   WORKING_DIRECTORY: "${{ github.workspace }}/android_app"
   FIREBASE_JSON_PATH: "${{ github.workspace }}/android_app/app"
+  APK_OUTPUT_PATH: "${{ github.workspace }}/android_app/app/build/outputs/apk/release"  
+  AAB_OUTPUT_PATH: "${{ github.workspace }}/android_app/app/build/outputs/bundle/release"
   GIT_TAG: ${{ github.ref_name }}
   
 jobs:
@@ -71,17 +73,16 @@ jobs:
      
       - name: Sign APK with Apksigner
         run: |
-          ls -la 
-          cd app/release
-          ls -la
+          cd ${{ env.APK_OUTPUT_PATH }}
           # If your keypass is different from storepass, you'll need ANDROID_KEY_PASSWORD secret for it.
-          apksigner sign --ks "${{ env.ANDROID_KEYSTORE_PATH }}"  --ks-pass pass:"${{ env.ANDROID_KEYSTORE_PASSWORD }}"  --ks-key-alias ${{ env.ANDROID_KEY_ALIAS }}  --key-pass pass:"${{ env.ANDROID_KEY_PASSWORD }}" ./app/release/*.apk
+          apksigner sign --ks "${{ env.ANDROID_KEYSTORE_PATH }}"  --ks-pass pass:"${{ env.ANDROID_KEYSTORE_PASSWORD }}"  --ks-key-alias ${{ env.ANDROID_KEY_ALIAS }}  --key-pass pass:"${{ env.ANDROID_KEY_PASSWORD }}" ./*.apk
 
            
       - name: Sign AAB with Jarsigner
         run: |
+          cd ${{ env.AAB_OUTPUT_PATH }}
           # If your keypass is different from storepass, you'll need ANDROID_KEY_PASSWORD secret for it.
-          jarsigner -keystore "${{ env.ANDROID_KEYSTORE_PATH }}" --storepass "${{ env.ANDROID_KEYSTORE_PASSWORD }}" ./app/release/*.aab ${{ env.ANDROID_KEY_ALIAS }}
+          jarsigner -keystore "${{ env.ANDROID_KEYSTORE_PATH }}" --storepass "${{ env.ANDROID_KEYSTORE_PASSWORD }}" ./*.aab ${{ env.ANDROID_KEY_ALIAS }}
 
 
       - name: Rename release files with tag name or snapshot
@@ -91,16 +92,28 @@ jobs:
           else
             NAME="goodwalls-snapshot"
           fi
-          
-          mv ./app/release/app-release.apk ./app/release/${NAME}.apk
-          mv ./app/release/app-release.aab ./app/release/${NAME}.aab
+          cd ${{ env.APK_OUTPUT_PATH }}
+          mv ./app-release-unsigned.apk ./${NAME}.apk
+          cd ${{ env.AAB_OUTPUT_PATH }}
+          mv ./app-release.aab ./${NAME}.aab
           
 
       - name: GitHub release
         uses: softprops/action-gh-release@v2
         with:
+          draft : true
+          make_latest: true
+          files: |
+            ${{ env.APK_OUTPUT_PATH }}/*.apk
+            ${{ env.AAB_OUTPUT_PATH }}/*.aab
+
+
+      - name: GitHub release
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v*.*.*')
+        uses: softprops/action-gh-release@v2
+        with:
           draft : false
           make_latest: true
           files: |
-            ./app/release/*.aab
-            ./app/release/*.apk
+            ${{ env.APK_OUTPUT_PATH }}/*.apk
+            ${{ env.AAB_OUTPUT_PATH }}/*.aab
