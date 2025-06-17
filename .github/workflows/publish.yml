@@ -27,6 +27,7 @@ env:
   FIREBASE_JSON_SSL_IV: ${{ secrets.FIREBASE_JSON_SSL_IV }}
 
   WORKING_DIRECTORY: "${{ github.workspace }}/android_app"
+  FIREBASE_JSON_PATH: "${{ github.workspace }}/android_app/app"
   GIT_TAG: ${{ github.ref_name }}
   
 jobs:
@@ -57,11 +58,10 @@ jobs:
       - name: Decrypt keystore
         run: |
           cd app
-          openssl aes-256-cbc -K ${{ env.FIREBASE_JSON_SSL_KEY }} -iv ${{ env.FIREBASE_JSON_SSL_IV }} -in google-services.json.enc -out google-services.json -d
+          openssl aes-256-cbc -K ${{ env.FIREBASE_JSON_SSL_KEY }} -iv ${{ env.FIREBASE_JSON_SSL_IV }} -in ${{ env.FIREBASE_JSON_PATH }}/google-services.json.enc -out ${{ env.FIREBASE_JSON_PATH }}/google-services.json -d
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
-      - run: make assemble-release
 
       - name: Build Release APK
         run: ./gradlew assembleRelease
