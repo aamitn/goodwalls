@@ -109,8 +109,9 @@ jobs:
           mv ${{ env.AAB_OUTPUT_PATH }}/app-release.aab ${{ env.AAB_OUTPUT_PATH }}/${NAME}.aab
           
 
-      - name: GitHub release
+      - name: GitHub UNTAGGED Release
         uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/') == false
         with:
           prerelease: true
           draft : false
@@ -122,7 +123,7 @@ jobs:
             ${{ env.AAB_OUTPUT_PATH }}/*.aab
 
 
-      - name: GitHub release
+      - name: GitHub TAGGED Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')        
         with:
