@@ -33,15 +33,15 @@ jobs:
   deploy:
     name: Build
     runs-on: ubuntu-22.04
-    defaults:
-      run:
-        working-directory: ${{ env.WORKING_DIRECTORY }} # Set the working directory for all steps in this job
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
+
       - uses: android-actions/setup-android@v3
       - run: |
           yes | sdkmanager 'platforms;android-35' 'build-tools;35.0.0' || { echo "sdkmanager failed. Check above logs for errors."; exit 1; }
@@ -53,31 +53,37 @@ jobs:
           echo "PATH=$PATH:$APKSIGNER_DIR" >> $GITHUB_ENV
 
       - name: Decrypt keystore
-        run: openssl aes-256-cbc -K ${{ env.FIREBASE_JSON_SSL_KEY }} -iv ${{ env.FIREBASE_JSON_SSL_IV }} -in google-services.json.enc -out google-services.json -d
+        run: openssl aes-256-cbc -K ${{ env.FIREBASE_JSON_SSL_KEY }} -iv ${{ env.FIREBASE_JSON_SSL_IV }} -in ./app/google-services.json.enc -out ./app/google-services.json -d
+        working-directory: ${{ env.WORKING_DIRECTORY }}
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
-      - run: make assemble-release
+        working-directory: ${{ env.WORKING_DIRECTORY }}
 
       - name: Build Release APK
         run: ./gradlew assembleRelease
+        working-directory: ${{ env.WORKING_DIRECTORY }}
 
       - name: Build Release AAB
         run: ./gradlew bundleRelease
+        working-directory: ${{ env.WORKING_DIRECTORY }}
      
       - name: Sign APK with Apksigner
+        working-directory: ${{ env.WORKING_DIRECTORY }}
         run: |
           # If your keypass is different from storepass, you'll need ANDROID_KEY_PASSWORD secret for it.
            apksigner sign --ks "${{ env.ANDROID_KEYSTORE_PATH }}"  --ks-pass pass:"${{ env.ANDROID_KEYSTORE_PASSWORD }}"  --ks-key-alias ${{ env.ANDROID_KEY_ALIAS }}  --key-pass pass:"${{ env.ANDROID_KEY_PASSWORD }}" ./app/release/*.apk
 
            
       - name: Sign AAB with Jarsigner
+        working-directory: ${{ env.WORKING_DIRECTORY }}
         run: |
           # If your keypass is different from storepass, you'll need ANDROID_KEY_PASSWORD secret for it.
           jarsigner -keystore "${{ env.ANDROID_KEYSTORE_PATH }}" --storepass "${{ env.ANDROID_KEYSTORE_PASSWORD }}" ./app/release/*.aab ${{ env.ANDROID_KEY_ALIAS }}
 
 
       - name: Rename release files with tag name or snapshot
+        working-directory: ${{ env.WORKING_DIRECTORY }}
         run: |
           if [[ "${{ github.ref }}" == refs/tags/* ]]; then
             NAME="goodwalls-${{ env.GIT_TAG }}"
@@ -95,5 +101,5 @@ jobs:
           draft : false
           make_latest: true
           files: |
-            ./app/release/*.aab
-            ./app/release/*.apk
+            ./android-app/app/release/*.aab
+            ./android-app/app/release/*.apk
