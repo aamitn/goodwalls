@@ -16,5 +16,5 @@ support@bitmutex.com
 
 If you need help support related with app configuration or documentation, please write your support request via email with the format :
 
-* **Email subject** : Goodwalls Issue
+* **Email subject** : \[Goodwalls Issue]
 * **Email body** : Describe your problem as clearly as possible.
