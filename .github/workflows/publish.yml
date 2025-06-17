@@ -111,6 +111,7 @@ jobs:
           draft : false
           make_latest: false
           generate_release_notes: true
+          tag_name: Snapshot
           files: |
             ${{ env.APK_OUTPUT_PATH }}/*.apk
             ${{ env.AAB_OUTPUT_PATH }}/*.aab
