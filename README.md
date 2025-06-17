@@ -2,7 +2,7 @@
 
 <img src="./android_app/assets/logo.png" alt="Goodwalls logo" height="auto" width="170" align="left" style="border-radius:12px; padding-right:5px;">
 
-A wallpaper application with Android client and PHP/MySQL backend. The app allows users to browse, download and set wallpapers and live wallpapers.
+A wallpaper application with Native Java Android App client and PHP/MySQL backend server. The app allows users to browse, download and set wallpapers and live wallpapers.
 
 [![goodwalls-app publish](https://github.com/aamitn/goodwalls/actions/workflows/publish.yml/badge.svg)](https://github.com/aamitn/goodwalls/actions/workflows/publish.yml)
 
