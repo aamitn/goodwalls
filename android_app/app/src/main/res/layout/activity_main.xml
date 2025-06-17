@@ -14,7 +14,7 @@
 
         <include layout="@layout/include_appbar_main_default" />
 
-        <com.app.goodwalls.component.RtlViewPager
+        <com.app.goodwalls1.component.RtlViewPager
             android:id="@+id/view_pager_rtl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.app.goodwalls.component.RtlViewPager
+    <com.app.goodwalls1.component.RtlViewPager
         android:id="@+id/tab_view_pager_rtl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

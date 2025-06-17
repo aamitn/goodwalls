@@ -22,8 +22,8 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.app.goodwalls" />
-                  <option name="mobileSdkAppId" value="1:99828869558:android:b4a6b45d246a2de9e3f917" />
+                  <option name="appId" value="com.app.goodwalls1" />
+                  <option name="mobileSdkAppId" value="1:99828869558:android:e6bb0d17b8ed8d56e3f917" />
                   <option name="projectId" value="goodwalls-d93ed" />
                   <option name="projectNumber" value="99828869558" />
                 </ConnectionSetting>
