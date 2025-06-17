@@ -53,7 +53,9 @@ jobs:
           echo "PATH=$PATH:$APKSIGNER_DIR" >> $GITHUB_ENV
 
       - name: Decrypt keystore
-        run: openssl aes-256-cbc -K ${{ env.FIREBASE_JSON_SSL_KEY }} -iv ${{ env.FIREBASE_JSON_SSL_IV }} -in ./android-app/app/google-services.json.enc -out ./android-app/app/google-services.json -d
+        run: |
+          pwd && ls -la
+          openssl aes-256-cbc -K ${{ env.FIREBASE_JSON_SSL_KEY }} -iv ${{ env.FIREBASE_JSON_SSL_IV }} -in google-services.json.enc -out google-services.json -d
 
 
       - name: Make gradlew executable
