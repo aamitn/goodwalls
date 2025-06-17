@@ -82,7 +82,7 @@ if (isset($_POST["login"])) {
                 <div class="body">
                     <form id="form_validation" method="post">
                         <center>
-                            <img src="assets/images/ic_launcher.png" width="100px" height="100px">
+                            <img src="assets/images/logo.png" width="100px" height="100px">
                             <br>
                             <div class="custom-padding1"><div class="uppercase"><?php echo $app_name; ?></div></div>
                             <div class="custom-padding2 col-pink"><?php echo isset($error['failed']) ? $error['failed'] : '';?></div>

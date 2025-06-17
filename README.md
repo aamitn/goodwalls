@@ -1,13 +1,16 @@
-<a href="https://play.google.com/store/apps/details?id=com.app.goodwalls1" target="_blank" align="left">
-  <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"  alt="Get it on Google Play"  height="auto" width=130" align="right">
-</a>
+[<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"  alt="Get it on Google Play"  height="auto" width="200" align="right">](https://play.google.com/store/apps/details?id=com.app.goodwalls1)
+
+
 
 # GoodWalls App
 
-<img src="./android_app/assets/logo.png" alt="Goodwalls logo" height="auto" width="90" align="left" style="border-radius:12px; padding-right:5px;">
+<img src="./android_app/assets/logo.png" alt="Goodwalls logo" height="auto" width="100" align="left" style="border-radius:12px; padding-right:5px;">
 
 A wallpaper application with Android client and PHP/MySQL backend. The app allows users to browse, download and set wallpapers and live wallpapers.
 
+[![goodwalls-app publish](https://github.com/aamitn/goodwalls/actions/workflows/publish.yml/badge.svg)](https://github.com/aamitn/goodwalls/actions/workflows/publish.yml)
+
+<br>
 
 ## Project Location
 
@@ -17,9 +20,8 @@ A wallpaper application with Android client and PHP/MySQL backend. The app allow
 | [`Readme`](./android_app/README.md)  | [`Readme`](./backend/README.md)  |
 
 
-### Documentation
-- `docs.html` - Comprehensive documentation
-- `changelog.html` - Version history and updates
+>### `Documentation` : https://bitmutex.gitbook.io/goodwalls-docs/
+
 
 ## Requirements
 
@@ -48,5 +50,11 @@ A wallpaper application with Android client and PHP/MySQL backend. The app allow
    - Generate signing keystore
 
 ## License
+Copyright (C) 2025 [Bitmutex Technologies](https://www.bitmutex.com)
 
-Open-Source Free Software Maintained by  [Bitmutex Technologies](https://www.bitmutex.com)
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 3.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>. 
+

@@ -6,7 +6,7 @@
                 
                 <div class="info-container">
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                        <img src="assets/images/ic_launcher.png" width="40px" height="40px" />
+                        <img src="assets/images/logo.png" width="40px" height="40px" />
                     </div>
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <b><?php echo $data['username'] ?></b>
