@@ -4,6 +4,9 @@ on:
   push:
     tags:
       - v*.*.*
+    branches:
+      - main
+      - master
 
 permissions:
   contents: write
@@ -74,10 +77,16 @@ jobs:
           jarsigner -keystore "${{ env.ANDROID_KEYSTORE_PATH }}" --storepass "${{ env.ANDROID_KEYSTORE_PASSWORD }}" ./app/release/*.aab ${{ env.ANDROID_KEY_ALIAS }}
 
 
-      - name: Rename release files with tag name
+      - name: Rename release files with tag name or snapshot
         run: |
-          mv ./app/release/app-release.apk ./app/release/goodwalls-${{ env.GIT_TAG }}.apk
-          mv ./app/release/app-release.aab ./app/release/goodwalls-${{ env.GIT_TAG }}.aab
+          if [[ "${{ github.ref }}" == refs/tags/* ]]; then
+            NAME="goodwalls-${{ env.GIT_TAG }}"
+          else
+            NAME="goodwalls-snapshot"
+          fi
+          
+          mv ./app/release/app-release.apk ./app/release/${NAME}.apk
+          mv ./app/release/app-release.aab ./app/release/${NAME}.aab
           
 
       - name: GitHub release
