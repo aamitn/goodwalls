@@ -26,7 +26,7 @@ env:
   FIREBASE_JSON_SSL_KEY: ${{ secrets.FIREBASE_JSON_SSL_KEY }}
   FIREBASE_JSON_SSL_IV: ${{ secrets.FIREBASE_JSON_SSL_IV }}
 
-  WORKING_DIRECTORY: "${{ github.workspace }}/android-app"
+  WORKING_DIRECTORY: android-app
   GIT_TAG: ${{ github.ref_name }}
   
 jobs:
