@@ -35,8 +35,13 @@ env:
   GIT_TAG: ${{ github.ref_name }}
   
 jobs:
-  deploy:
-    name: Build
+  build:
+    name: Build and Release App
+    if: |
+      !(
+        startsWith(github.event.head_commit.message, 'chore:') ||
+        startsWith(github.event.head_commit.message, 'GITBOOK-GoodwallsDocs')
+      )
     runs-on: ubuntu-22.04
     defaults:
       run:
