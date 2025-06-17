@@ -23,6 +23,15 @@ A wallpaper application with Android client and PHP/MySQL backend. The app allow
 >### `Documentation` : https://bitmutex.gitbook.io/goodwalls-docs/
 
 
+## DirStruct
+```
+/goodwalls
+├── android_app/   # Android-Studio Project for Android App
+├── backend/       # PHP/MYSQL Backend Project
+├── docs/          # GitBook Documentation Source MD Files
+└── docs.html      # Local Docs Viewer redirecting to gitbook site
+```
+
 ## Requirements
 
 ### Android App
