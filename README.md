@@ -12,6 +12,8 @@ A wallpaper application with Android client and PHP/MySQL backend. The app allow
 
 <br>
 
+[<img src="https://i.sstatic.net/I4fiW.jpg">](https://example.com),
+
 ## Project Location
 
 | **Android App**                    | **Backend**                    |
