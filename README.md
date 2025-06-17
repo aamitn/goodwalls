@@ -10,7 +10,6 @@ A wallpaper application with Native Java Android App client and PHP/MySQL backen
 
 <br>
 
-
 ## Project Location
 
 | **Android App**                    | **Backend**                    |
