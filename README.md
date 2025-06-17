@@ -1,5 +1,3 @@
-[<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"  alt="Get it on Google Play"  height="auto" width="200" align="right">](https://play.google.com/store/apps/details?id=com.app.goodwalls1)
-
 # GoodWalls App
 
 <img src="./android_app/assets/logo.png" alt="Goodwalls logo" height="auto" width="170" align="left" style="border-radius:12px; padding-right:5px;">
@@ -60,7 +58,7 @@ A wallpaper application with Android client and PHP/MySQL backend. The app allow
    - Generate signing keystore
 
 ## License
-Copyright (C) 2025 [Bitmutex Technologies](https://www.bitmutex.com)
+Copyright © [Bitmutex Technologies](https://www.bitmutex.com)
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 3.
 
