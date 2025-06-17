@@ -66,23 +66,21 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build Release APK
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleRelease --info
 
       - name: Build Release AAB
-        run: ./gradlew bundleRelease
+        run: ./gradlew bundleRelease --info
      
       - name: Sign APK with Apksigner
         run: |
-          cd ${{ env.APK_OUTPUT_PATH }}
           # If your keypass is different from storepass, you'll need ANDROID_KEY_PASSWORD secret for it.
-          apksigner sign --ks "${{ env.ANDROID_KEYSTORE_PATH }}"  --ks-pass pass:"${{ env.ANDROID_KEYSTORE_PASSWORD }}"  --ks-key-alias ${{ env.ANDROID_KEY_ALIAS }}  --key-pass pass:"${{ env.ANDROID_KEY_PASSWORD }}" ./*.apk
+          apksigner sign --ks "${{ env.ANDROID_KEYSTORE_PATH }}"  --ks-pass pass:"${{ env.ANDROID_KEYSTORE_PASSWORD }}"  --ks-key-alias ${{ env.ANDROID_KEY_ALIAS }}  --key-pass pass:"${{ env.ANDROID_KEY_PASSWORD }}" ${{ env.APK_OUTPUT_PATH }}/*.apk
 
            
       - name: Sign AAB with Jarsigner
         run: |
-          cd ${{ env.AAB_OUTPUT_PATH }}
           # If your keypass is different from storepass, you'll need ANDROID_KEY_PASSWORD secret for it.
-          jarsigner -keystore "${{ env.ANDROID_KEYSTORE_PATH }}" --storepass "${{ env.ANDROID_KEYSTORE_PASSWORD }}" ./*.aab ${{ env.ANDROID_KEY_ALIAS }}
+          jarsigner -keystore "${{ env.ANDROID_KEYSTORE_PATH }}" --storepass "${{ env.ANDROID_KEYSTORE_PASSWORD }}" ${{ env.AAB_OUTPUT_PATH }}./*.aab ${{ env.ANDROID_KEY_ALIAS }}
 
 
       - name: Rename release files with tag name or snapshot
@@ -92,10 +90,8 @@ jobs:
           else
             NAME="goodwalls-snapshot"
           fi
-          cd ${{ env.APK_OUTPUT_PATH }}
-          mv ./app-release-unsigned.apk ./${NAME}.apk
-          cd ${{ env.AAB_OUTPUT_PATH }}
-          mv ./app-release.aab ./${NAME}.aab
+          mv ${{ env.APK_OUTPUT_PATH }}/app-release-unsigned.apk ${{ env.APK_OUTPUT_PATH }}/${NAME}.apk
+          mv ${{ env.AAB_OUTPUT_PATH }}/app-release.aab ${{ env.AAB_OUTPUT_PATH }}/${NAME}.aab
           
 
       - name: GitHub release
