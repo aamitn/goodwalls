@@ -42,7 +42,7 @@ jobs:
       run:
         working-directory: ${{ env.WORKING_DIRECTORY }} # Set the working directory for all steps in this job
     steps:
-      - name: INIT REPO CHECKLOUT
+      - name: Repo Checkout
         uses: actions/checkout@v4
 
       - name: Setup JAVA 21 
@@ -107,8 +107,10 @@ jobs:
       - name: GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          draft : true
-          make_latest: true
+          prerelease: true
+          draft : false
+          make_latest: false
+          generate_release_notes: true
           files: |
             ${{ env.APK_OUTPUT_PATH }}/*.apk
             ${{ env.AAB_OUTPUT_PATH }}/*.aab
@@ -120,6 +122,7 @@ jobs:
         with:
           draft : false
           make_latest: true
+          generate_release_notes: true
           files: |
             ${{ env.APK_OUTPUT_PATH }}/*.apk
             ${{ env.AAB_OUTPUT_PATH }}/*.aab
