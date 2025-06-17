@@ -55,6 +55,8 @@ jobs:
       - name: Decrypt keystore
         run: |
           pwd && ls -la
+          cd android-app
+          cd app
           openssl aes-256-cbc -K ${{ env.FIREBASE_JSON_SSL_KEY }} -iv ${{ env.FIREBASE_JSON_SSL_IV }} -in google-services.json.enc -out google-services.json -d
 
 
