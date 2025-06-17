@@ -6,7 +6,9 @@ on:
       - v*.*.*
     branches:
       - main
-      - master
+  pull_request:
+    branches:
+      - main  
 
 permissions:
   contents: write
@@ -21,7 +23,7 @@ env:
   ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
   ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
   ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-  ANDROID_KEYSTORE_PATH: "./goodwalls.jks"
+  ANDROID_KEYSTORE_FILENAME: "./goodwalls.jks"
 
   FIREBASE_JSON_SSL_KEY: ${{ secrets.FIREBASE_JSON_SSL_KEY }}
   FIREBASE_JSON_SSL_IV: ${{ secrets.FIREBASE_JSON_SSL_IV }}
@@ -40,15 +42,20 @@ jobs:
       run:
         working-directory: ${{ env.WORKING_DIRECTORY }} # Set the working directory for all steps in this job
     steps:
-      - uses: actions/checkout@v4
+      - name: INIT REPO CHECKLOUT
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-java@v3
+      - name: Setup JAVA 21 
+        uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '17'
-          
-      - uses: android-actions/setup-android@v3
-      - run: |
+          java-version: '21'
+
+      - name: Setup Android SDK       
+        uses: android-actions/setup-android@v3
+
+      - name: Check Andorid SDK and add APKSIGNER to PATH
+        run: |
           yes | sdkmanager 'platforms;android-35' 'build-tools;35.0.0' || { echo "sdkmanager failed. Check above logs for errors."; exit 1; }
 
           # Find the exact directory where apksigner executable resides
@@ -61,26 +68,29 @@ jobs:
         run: |
           cd app
           openssl aes-256-cbc -K ${{ env.FIREBASE_JSON_SSL_KEY }} -iv ${{ env.FIREBASE_JSON_SSL_IV }} -in ${{ env.FIREBASE_JSON_PATH }}/google-services.json.enc -out ${{ env.FIREBASE_JSON_PATH }}/google-services.json -d
-
+          
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
       - name: Build Release APK
-        run: ./gradlew assembleRelease --info
+        run: gradle assembleRelease --scan
 
       - name: Build Release AAB
-        run: ./gradlew bundleRelease --info
+        run: gradle bundleRelease --scan
      
       - name: Sign APK with Apksigner
         run: |
           # If your keypass is different from storepass, you'll need ANDROID_KEY_PASSWORD secret for it.
-          apksigner sign --ks "${{ env.ANDROID_KEYSTORE_PATH }}"  --ks-pass pass:"${{ env.ANDROID_KEYSTORE_PASSWORD }}"  --ks-key-alias ${{ env.ANDROID_KEY_ALIAS }}  --key-pass pass:"${{ env.ANDROID_KEY_PASSWORD }}" ${{ env.APK_OUTPUT_PATH }}/*.apk
+          apksigner sign --ks "${{ env.ANDROID_KEYSTORE_FILENAME }}"  --ks-pass pass:"${{ env.ANDROID_KEYSTORE_PASSWORD }}"  --ks-key-alias ${{ env.ANDROID_KEY_ALIAS }}  --key-pass pass:"${{ env.ANDROID_KEY_PASSWORD }}" ${{ env.APK_OUTPUT_PATH }}/*.apk
 
            
       - name: Sign AAB with Jarsigner
         run: |
           # If your keypass is different from storepass, you'll need ANDROID_KEY_PASSWORD secret for it.
-          jarsigner -keystore "${{ env.ANDROID_KEYSTORE_PATH }}" --storepass "${{ env.ANDROID_KEYSTORE_PASSWORD }}" ${{ env.AAB_OUTPUT_PATH }}./*.aab ${{ env.ANDROID_KEY_ALIAS }}
+          jarsigner -keystore "${{ env.ANDROID_KEYSTORE_FILENAME }}" --storepass "${{ env.ANDROID_KEYSTORE_PASSWORD }}" ${{ env.AAB_OUTPUT_PATH }}/*.aab ${{ env.ANDROID_KEY_ALIAS }}
 
 
       - name: Rename release files with tag name or snapshot
