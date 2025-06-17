@@ -26,7 +26,7 @@ env:
   FIREBASE_JSON_SSL_KEY: ${{ secrets.FIREBASE_JSON_SSL_KEY }}
   FIREBASE_JSON_SSL_IV: ${{ secrets.FIREBASE_JSON_SSL_IV }}
 
-  WORKING_DIRECTORY: "./android-app"
+  WORKING_DIRECTORY: "android-app"
   GIT_TAG: ${{ github.ref_name }}
   
 jobs:
@@ -53,8 +53,8 @@ jobs:
           echo "PATH=$PATH:$APKSIGNER_DIR" >> $GITHUB_ENV
 
       - name: Decrypt keystore
-        run: openssl aes-256-cbc -K ${{ env.FIREBASE_JSON_SSL_KEY }} -iv ${{ env.FIREBASE_JSON_SSL_IV }} -in ./app/google-services.json.enc -out ./app/google-services.json -d
-        working-directory: ${{ env.WORKING_DIRECTORY }}
+        run: openssl aes-256-cbc -K ${{ env.FIREBASE_JSON_SSL_KEY }} -iv ${{ env.FIREBASE_JSON_SSL_IV }} -in ./android-app/app/google-services.json.enc -out ./android-app/app/google-services.json -d
+
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
