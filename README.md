@@ -1,18 +1,15 @@
-[<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"  alt="Get it on Google Play"  height="auto" width="200" align="right">](https://play.google.com/store/apps/details?id=com.app.goodwalls1)
-
-
-
 # GoodWalls App
 
-<img src="./android_app/assets/logo.png" alt="Goodwalls logo" height="auto" width="100" align="left" style="border-radius:12px; padding-right:5px;">
+<img src="./android_app/assets/logo.png" alt="Goodwalls logo" height="auto" width="170" align="left" style="border-radius:12px; padding-right:5px;">
 
 A wallpaper application with Android client and PHP/MySQL backend. The app allows users to browse, download and set wallpapers and live wallpapers.
 
 [![goodwalls-app publish](https://github.com/aamitn/goodwalls/actions/workflows/publish.yml/badge.svg)](https://github.com/aamitn/goodwalls/actions/workflows/publish.yml)
 
+[<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"  alt="Get it on Google Play"  height="auto" width="200">](https://play.google.com/store/apps/details?id=com.app.goodwalls1)
+
 <br>
 
-[<img src="https://i.sstatic.net/I4fiW.jpg">](https://example.com),
 
 ## Project Location
 
